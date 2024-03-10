@@ -1,10 +1,31 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Loading from "../components/Loading";
+import axios from "axios";
 import "../css/Login.css";
 
 function LoginView() {
+  let [userName, setUserName] = useState('')
+  let [password, setPassword] = useState('')
+
   let [loading, setLoading] = useState(false);
+
+  function doLogin(e){
+    setLoading(true)
+    axios.post('login/', {
+      tel: userName,
+      password: password
+    })
+    .then(res => {
+      setLoading(false)
+      console.log(res.data.token);
+    })
+    .catch(error => {
+      setLoading(false)
+    })
+    e.preventDefault()
+  }
+
   return (
     <>
       <div className="container">
@@ -15,7 +36,7 @@ function LoginView() {
               {!loading && (
                 <>
                   <h2 className="login-heading">No name</h2>
-                  <form>
+                  <form onSubmit={doLogin}>
                     <div className="mb-3">
                       <label for="username" className="form-label">
                         Username
@@ -25,6 +46,8 @@ function LoginView() {
                         className="form-control"
                         id="username"
                         placeholder="Enter username"
+                        onChange={e => setUserName(e.target.value)}
+                        required
                       />
                     </div>
                     <div className="mb-3">
@@ -36,6 +59,8 @@ function LoginView() {
                         className="form-control"
                         id="password"
                         placeholder="Enter password"
+                        onChange={e => setPassword(e.target.value)}
+                        required
                       />
                     </div>
                     <button

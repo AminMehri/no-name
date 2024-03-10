@@ -14,14 +14,17 @@ body {
   margin-bottom: 30px !important;
 }
 .form-control:focus {
-  border-color: #ffc107 !important;
+  border-color: var(--orange) !important;
   box-shadow: none !important;
 }
 .btn-login {
-  background-color: #ffc107 !important;
-  border-color: #ffc107 !important;
+  background-color: var(--orange) !important;
+  border-color: var(--orange) !important;
 }
 .btn-login:hover {
-  background-color: #ffca2b !important;
-  border-color: #ffca2b !important;
+  background-color: var(--orange) !important;
+  border-color: var(--orange) !important;
+}
+.form-control {
+  border-radius: 20px !important;
 }
