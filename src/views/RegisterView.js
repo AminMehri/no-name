@@ -22,7 +22,7 @@ function RegisterView() {
 
   let [loading, setLoading] = useState(false);
 
-  let [access, setAccess] = useState(true);
+  let access = true
 
   function doRegister(e) {
     e.preventDefault();
@@ -30,7 +30,7 @@ function RegisterView() {
     // Check username length
     if (userName.length < 5) {
       setUserNameE(true);
-      setAccess(false);
+      access = false
       if (userName.length == 0) {
         setUserNameEM("نام کاربری اجباری است");
       } else {
@@ -60,8 +60,9 @@ function RegisterView() {
 
     // Check password length
     if (password.length < 8) {
+
       setPasswordE(true);
-      setAccess(false);
+      access = false
       if (password.length == 0) {
         setPasswordEM("رمزعبور اجباری است");
       } else {
@@ -73,8 +74,9 @@ function RegisterView() {
     }
 
     if (passwordConfirm.length < 8) {
+
       setPasswordConfirmE(true);
-      setAccess(false);
+      access = false
       if (passwordConfirm.length == 0) {
         setPasswordConfirmEM("تکرار رمزعبور اجباری است");
       } else {
@@ -87,16 +89,16 @@ function RegisterView() {
 
     // Check password compatibility
     if (password != passwordConfirm) {
-      setAccess(false);
+
+      access = false
       setPasswordConfirmE(true);
       setPasswordE(true);
       setPasswordEM("رمزعبور و تکرار آن با هم مطابقت ندارد");
     } else {
       if (!passwordE && passwordConfirmE) {
-        setAccess(true);
+        access = true
       }
     }
-
     if (access) {
       setLoading(true);
       axios
